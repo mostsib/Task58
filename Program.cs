@@ -18,7 +18,7 @@ int[,] FillArray(int numline, int numColumns, int minRand = 0, int maxRand = 10)
     int[,] matrix = new int[numline, numColumns];
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
-       for (int j = 0; j < matrix.GetLength(1); i++) 
+       for (int j = 0; j < matrix.GetLength(1); j++) 
        {
         matrix[i,j] = new Random().Next(minRand, maxRand);
        }
@@ -40,20 +40,18 @@ void PrintArray(int[,] matrix)
 
 int[,] MatrixMultiplication(int[,] matrix1, int[,] matrix2)
 {
-    int[,] result = new int[matrix1.GetLength(0), matrix2.GetLength(1)];
+    int[,] product = new int[matrix1.GetLength(0), matrix2.GetLength(1)];
     for (int i = 0; i < matrix1.GetLength(0); i++)
     {
         for (int j = 0; j < matrix2.GetLength(1); j++)
         {
-            result[i,j] = 0;
+            product[i,j] = 0;
             for (int n = 0; n < matrix1.GetLength(1); n++)
-            result[i,j] += matrix1[i, n] * matrix2[n,j];
+            product[i,j] += matrix1[i, n] * matrix2[n,j];
         }
     }
-    return result;
+    return product;
 }
-void Main()
-{
     int a = Prompt("Введите число строк матрицы А:");
     int b = Prompt("Введите число столбцов матрицы А:");
     int c = Prompt("Введите число строк матрицы B:");
@@ -65,6 +63,7 @@ void Main()
     }
     int[,] array1 = FillArray (a,b);
     int[,] array2 = FillArray (c,d);
+
     PrintArray(array1);
     Console.WriteLine();
     PrintArray(array2);
@@ -76,4 +75,6 @@ void Main()
     }
     int[,] Result = MatrixMultiplication(array1, array2);
     PrintArray(Result);
-}
+
+
+Console.WriteLine();
